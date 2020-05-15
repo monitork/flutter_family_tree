@@ -66,9 +66,19 @@ class _FFTParentState extends State<FFTParent> {
               widget.parent,
               drawVerticalLine(),
               drawHorizontalLine(false, false, width: myChildSize.width),
-              FFTRow(
-                children: widget.children,
-              )
+              widget.children != null
+                  ? Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        widget.children.length,
+                        (index) {
+                          return FFTParent(
+                            parent: widget.children[index],
+                          );
+                        },
+                      ))
+                  : SizedBox()
             ]));
   }
 
